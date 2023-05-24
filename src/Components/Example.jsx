@@ -207,13 +207,13 @@ const DatagridActions = (datagridState) => {
         onCancel={() => { console.log('Cancel', datagridState) }}
         onFlyoutOpen={() => { 
           console.log('Open', datagridState)
-          // document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList = 'c4p--datagrid-filter-flyout c4p--datagrid-filter-flyout--open c4p--datagrid-filter-flyout--instant';
-          // document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList = 'cds--btn--icon-only c4p--datagrid-filter-flyout__trigger c4p--datagrid-filter-flyout__trigger--open cds--btn cds--btn--ghost cds--btn--icon-only cds--btn cds--btn--ghost'
+          document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList = 'c4p--datagrid-filter-flyout c4p--datagrid-filter-flyout--open c4p--datagrid-filter-flyout--instant';
+          document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList = 'cds--btn--icon-only c4p--datagrid-filter-flyout__trigger c4p--datagrid-filter-flyout__trigger--open cds--btn cds--btn--ghost cds--btn--icon-only cds--btn cds--btn--ghost'
         }}
         onFlyoutClose={() => {
           console.log('Close', datagridState)
-          // document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList = 'c4p--datagrid-filter-flyout c4p--datagrid-filter-flyout--open c4p--datagrid-filter-flyout--instant';
-          // document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList = 'cds--btn--icon-only c4p--datagrid-filter-flyout__trigger c4p--datagrid-filter-flyout__trigger--open cds--btn cds--btn--ghost cds--btn--icon-only cds--btn cds--btn--ghost'
+          document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList = 'c4p--datagrid-filter-flyout c4p--datagrid-filter-flyout--open c4p--datagrid-filter-flyout--instant';
+          document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList = 'cds--btn--icon-only c4p--datagrid-filter-flyout__trigger c4p--datagrid-filter-flyout__trigger--open cds--btn cds--btn--ghost cds--btn--icon-only cds--btn cds--btn--ghost'
         }}
         variation='flyout'
         updateMethod='instant'

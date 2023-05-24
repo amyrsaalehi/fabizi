@@ -7,8 +7,6 @@ import {
 import ChildrenContent from "./ChildrenContent";
 import { SidePanel } from "@carbon/ibm-products";
 
-import "./_example.scss";
-
 export const Example = () => {
   const [open, setOpen] = useState(false);
   return (
