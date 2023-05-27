@@ -12,7 +12,7 @@ import {
 } from '@carbon/ibm-products';
 import { TableToolbarContent, TableToolbarSearch } from '@carbon/react';
 
-import { memo, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 const filters = [
   {
@@ -170,6 +170,17 @@ const columns = [
 export const Example = () => {
 
   const datagridState = useDatagrid({
+    filterProps: {
+      variation: 'flyout', // default
+      updateMethod: 'batch', // default
+      primaryActionLabel: 'Apply', // default
+      secondaryActionLabel: 'Cancel', // default
+      flyoutIconDescription: 'Open filters', // default
+      shouldClickOutsideToClose: false, // default
+      filters,
+    },
+    DatagridActions,
+    batchActions: true,
     gridTitle: "Data Table Title",
     gridDescription: "Additional information if needed",
     columns,
@@ -196,31 +207,46 @@ export const Example = () => {
 
 const DatagridActions = (datagridState) => {
   const [open, setOpen] = useState(false);
+
+  const openModal = () => {
+    document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList.add('c4p--datagrid-filter-flyout--open');
+    document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList.add('c4p--datagrid-filter-flyout__trigger--open');
+  }
+
+  const closeModal = () => {
+    document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList.remove('c4p--datagrid-filter-flyout--open');
+    document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList.remove('c4p--datagrid-filter-flyout__trigger--open');
+  }
+
+  useEffect(() => {
+    (open ? openModal : closeModal)()
+  }, [open]);
+
   return (
     <TableToolbarContent>
       <TableToolbarSearch />
       <datagridState.FilterFlyout
         data={data}
         filters={filters}
-        setAllFilters={() => { console.log('Set All', datagridState) }}
-        onApply={() => { console.log('Apply', datagridState) }}
-        onCancel={() => { console.log('Cancel', datagridState) }}
-        onFlyoutOpen={() => { 
-          console.log('Open', datagridState)
-          document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList = 'c4p--datagrid-filter-flyout c4p--datagrid-filter-flyout--open c4p--datagrid-filter-flyout--instant';
-          document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList = 'cds--btn--icon-only c4p--datagrid-filter-flyout__trigger c4p--datagrid-filter-flyout__trigger--open cds--btn cds--btn--ghost cds--btn--icon-only cds--btn cds--btn--ghost'
+        setAllFilters={() => { console.log('Set All', open, datagridState) }}
+        onApply={() => { console.log('Apply', open, datagridState) }}
+        onCancel={() => { 
+        }}
+        onPanelOpen = {() => {
+          console.log('ehjfjhdr')
+        }}
+        onFlyoutOpen={() => {
+          console.log('open')
         }}
         onFlyoutClose={() => {
-          console.log('Close', datagridState)
-          document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList = 'c4p--datagrid-filter-flyout c4p--datagrid-filter-flyout--open c4p--datagrid-filter-flyout--instant';
-          document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList = 'cds--btn--icon-only c4p--datagrid-filter-flyout__trigger c4p--datagrid-filter-flyout__trigger--open cds--btn cds--btn--ghost cds--btn--icon-only cds--btn cds--btn--ghost'
+          console.log('close')
         }}
         variation='flyout'
-        updateMethod='instant'
+        updateMethod='batch'
         primaryActionLabel='Apply'
         secondaryActionLabel='Cancel'
         flyoutIconDescription='Filters'
-        shouldClickOutsideToClose={true}
+        shouldClickOutsideToClose={false}
       />
       <datagridState.CustomizeColumnsButton
         isTableSortable={true}

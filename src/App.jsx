@@ -1,10 +1,11 @@
 // import Example from './Components2/Example';
-import Example from './Components/Example'
+import Example from './Components3/Example'
 
 export const App = () => {
   return (
     <div className="container">
       <Example/>
+      
     </div>
   )
 }
