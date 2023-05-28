@@ -1,6 +1,6 @@
 @use '@carbon/react';
 @use '@carbon/ibm-products/css/index';
-
+@import 'carbon-for-ibm-cloud/src/components/OrderSummaryV2/_index';
 .container {
   max-width: 1200px;
   margin: 2rem auto;

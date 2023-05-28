@@ -1,258 +1,92 @@
+import React, { useState } from "react";
 import {
-  Datagrid,
-  useColumnOrder,
-  useCustomizeColumns,
-  useDatagrid,
-  useFiltering,
-  useInfiniteScroll,
-  useNestedRows,
-  useSelectRows,
-  useStickyColumn,
-  useSelectAllWithToggle,
-} from '@carbon/ibm-products';
-import { TableToolbarContent, TableToolbarSearch } from '@carbon/react';
-
-import { memo, useEffect, useRef, useState } from 'react';
-
-const filters = [
-  {
-    type: 'number',
-    column: 'visits',
-    props: {
-      NumberInput: {
-        min: 0,
-        id: 'visits-number-input',
-        invalidText: 'A valid value is required',
-        label: 'Visits',
-        placeholder: 'Type a number amount of visits',
-        // Add any other Carbon NumberInput props here
-      },
-    },
-  },
-  {
-    type: 'checkbox',
-    column: 'passwordStrength',
-    props: {
-      FormGroup: {
-        legendText: 'Password strength',
-        // Add any other Carbon FormGroup props here
-      },
-      Checkbox: [
-        {
-          id: 'normal',
-          labelText: 'Normal',
-          value: 'normal',
-          // Add any other Carbon Checkbox props here
-        },
-        {
-          id: 'minor-warning',
-          labelText: 'Minor warning',
-          value: 'minor-warning',
-          // Add any other Carbon Checkbox props here
-        },
-        {
-          id: 'critical',
-          labelText: 'Critical',
-          value: 'critical',
-          // Add any other Carbon Checkbox props here
-        },
-      ],
-    },
-  },
-  {
-    type: 'radio',
-    column: 'role',
-    props: {
-      FormGroup: {
-        legendText: 'Role',
-        // Add any other Carbon FormGroup props here
-      },
-      RadioButtonGroup: {
-        orientation: 'vertical',
-        legend: 'Role legend',
-        name: 'role-radio-button-group',
-        // Add any other Carbon RadioButtonGroup props here
-      },
-      RadioButton: [
-        {
-          id: 'developer',
-          labelText: 'Developer',
-          value: 'developer',
-          // Add any other Carbon RadioButton props here
-        },
-        {
-          id: 'designer',
-          labelText: 'Designer',
-          value: 'designer',
-          // Add any other Carbon RadioButton props here
-        },
-        {
-          id: 'researcher',
-          labelText: 'Researcher',
-          value: 'researcher',
-          // Add any other Carbon RadioButton props here
-        },
-      ],
-    },
-  },
-];
-
-const data = [
-  {
-    activeSince: new Date('09/26/81'),
-    age: 41,
-    firstName: 'Joel',
-    lastName: 'Miller',
-    passwordStrength: 'normal',
-    role: 'developer',
-    visits: '81',
-  },
-  {
-    activeSince: new Date('08/30/97'),
-    age: 19,
-    firstName: 'Ellie',
-    lastName: 'N/A',
-    passwordStrength: 'critical',
-    role: 'designer',
-    visits: '7',
-  },
-  {
-    activeSince: new Date('01/26/03'),
-    age: 39,
-    firstName: 'Tommy',
-    lastName: 'Miller',
-    passwordStrength: 'minor-warning',
-    role: 'researcher',
-    visits: '25',
-  },
-];
-
-const columns = [
-  {
-    Header: 'Row Index',
-    accessor: (row, i) => i,
-    sticky: 'left',
-    id: 'rowIndex', // id is required when accessor is a function.
-  },
-  {
-    Header: 'First Name',
-    accessor: 'firstName',
-  },
-  {
-    Header: 'Last Name',
-    accessor: 'lastName',
-  },
-  {
-    Header: 'Age',
-    accessor: 'age',
-    width: 50,
-  },
-  {
-    Header: 'Visits',
-    accessor: 'visits',
-    filter: 'number',
-    width: 60,
-  },
-  // Shows the checkbox filter example
-  {
-    Header: 'Password strength',
-    accessor: 'passwordStrength',
-    filter: 'checkbox',
-  },
-  // Shows the checkbox filter example
-  {
-    Header: 'Role',
-    accessor: 'role',
-    filter: 'radio',
-  },
-];
+  FlexGrid,
+  Row,
+  Column,
+  ContentSwitcher,
+  Switch,
+  ContainedList,
+  ContainedListItem,
+  Button
+} from "@carbon/react";
+import { ProductiveCard } from "@carbon/ibm-products";
+import { Printer32, Printer16, TableOfContents16 } from "@carbon/icons-react";
+import { Add } from "@carbon/react/icons";
 
 export const Example = () => {
-
-  const datagridState = useDatagrid({
-    filterProps: {
-      variation: 'flyout', // default
-      updateMethod: 'batch', // default
-      primaryActionLabel: 'Apply', // default
-      secondaryActionLabel: 'Cancel', // default
-      flyoutIconDescription: 'Open filters', // default
-      shouldClickOutsideToClose: false, // default
-      filters,
-    },
-    DatagridActions,
-    batchActions: true,
-    gridTitle: "Data Table Title",
-    gridDescription: "Additional information if needed",
-    columns,
-    data,
-    DatagridActions,
-    batchActions: true,
-    emptyStateTitle: 'Empty state title',
-    emptyStateDescription: 'Description explaining why table is empty',
-    emptyStateSize: 'lg',
-    multiLineWrapAll: true,
-  },
-    useFiltering,
-    useCustomizeColumns,
-    useColumnOrder,
-    useInfiniteScroll,
-    useNestedRows,
-    useSelectRows,
-    useStickyColumn,
-    useSelectAllWithToggle,
-  );
-  return <Datagrid
-    datagridState={datagridState} />;
-};
-
-const DatagridActions = (datagridState) => {
-  const [open, setOpen] = useState(false);
-
-  const openModal = () => {
-    document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList.add('c4p--datagrid-filter-flyout--open');
-    document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList.add('c4p--datagrid-filter-flyout__trigger--open');
-  }
-
-  const closeModal = () => {
-    document.getElementsByClassName('c4p--datagrid-filter-flyout')[0].classList.remove('c4p--datagrid-filter-flyout--open');
-    document.getElementsByClassName('c4p--datagrid-filter-flyout__trigger')[0].classList.remove('c4p--datagrid-filter-flyout__trigger--open');
-  }
-
-  useEffect(() => {
-    (open ? openModal : closeModal)()
-  }, [open]);
-
+  const action = () => {
+    console.log("action");
+  };
+  const defaultProps = {
+    title: <Printer32 size={16} />,
+    children: (
+      <>
+        <div className="graph" />
+        <p>Productive content text 1</p>
+        <p>Productive content text 2</p>
+      </>
+    ),
+    actionIcons: [
+      {
+        id: "1",
+        icon: (props) => <p>Print</p>,
+        onClick: action,
+        onKeyDown: action,
+        iconDescription: "Edit",
+      },
+      {
+        id: "2",
+        icon: (props) => <Printer16 size={16} {...props} />,
+        onClick: action,
+        onKeyDown: action,
+        iconDescription: "Delete",
+      },
+    ],
+  };
   return (
-    <TableToolbarContent>
-      <TableToolbarSearch />
-      <datagridState.FilterFlyout
-        data={data}
-        filters={filters}
-        setAllFilters={() => { console.log('Set All', open, datagridState) }}
-        onApply={() => { console.log('Apply', open, datagridState) }}
-        onCancel={() => { 
-        }}
-        onPanelOpen = {() => {
-          console.log('ehjfjhdr')
-        }}
-        onFlyoutOpen={() => {
-          console.log('open')
-        }}
-        onFlyoutClose={() => {
-          console.log('close')
-        }}
-        variation='flyout'
-        updateMethod='batch'
-        primaryActionLabel='Apply'
-        secondaryActionLabel='Cancel'
-        flyoutIconDescription='Filters'
-        shouldClickOutsideToClose={false}
-      />
-      <datagridState.CustomizeColumnsButton
-        isTableSortable={true}
-      />
-    </TableToolbarContent>
-  )
+    <div>
+      <FlexGrid>
+        <Row>
+          <Column sm={4} md={8} lg={4}>
+            <ProductiveCard {...defaultProps} />
+          </Column>
+        </Row>
+      </FlexGrid>
+    </div>
+  );
 };
 
-export default memo(Example);
+export const Example2 = () => {
+  return (
+    <ContentSwitcher selectedIndex={2} onChange={() => {}}>
+      <Switch name="one" text="First section">
+        asd
+      </Switch>
+      <Switch name="two" text="Second section" />
+      <Switch name="three" text="Third section" />
+    </ContentSwitcher>
+  );
+};
+export const Example4 = () => {
+  return (
+    <ContainedList label="List title" kind="on-page">
+     <ContainedListItem>List item
+      <img src="https://www.autismspeaks.org/sites/default/files/styles/wysiwyg_medium_width/public/Brennan%20Froehlke%201.jpg?itok=Me87fK5U"/>
+     </ContainedListItem>
+     <ContainedListItem>List item</ContainedListItem>
+     <ContainedListItem>List item</ContainedListItem>
+     <ContainedListItem>List item</ContainedListItem>
+   </ContainedList>
+  );
+};
+
+export const Example3 = () => {
+  const [icon,setIcon] = useState(false)
+  return (
+    <Button hasIconOnly={!icon} kind="tertiary" onMouseEnter={() => {setIcon(true)}} onMouseLeave={() => {setIcon(false)}} renderIcon={Add}>
+      View Product
+    </Button>
+  );
+};
+
+export default Example;
