@@ -1,6 +1,6 @@
 import { MDXCreateElement, OrderSummaryV2 } from "carbon-for-ibm-cloud";
 
-const Example = () => {
+const OrderSummary = () => {
   return (
     <div>
       <OrderSummaryV2
@@ -60,4 +60,4 @@ const Example = () => {
   );
 };
 
-export default Example;
+export default OrderSummary;
