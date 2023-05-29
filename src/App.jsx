@@ -8,13 +8,13 @@ import Sidepanel from "./Components/IBMProduct/SidePanel/Sidepanel";
 export const App = () => {
     return (
         <div className="container">
-            <OrderSummary/>
-            <List/>
+            {/* <OrderSummary/> */}
+            {/* <List/> */}
             <br/>
             <br/>
             <br/>
             <br/>
-            <Card/>
+            {/* <Card/> */}
             <br/>
             <br/>
             <br/>
@@ -24,7 +24,7 @@ export const App = () => {
             <br/>
             <br/>
             <br/>
-            <Sidepanel/>
+            {/* <Sidepanel/> */}
         </div>
     );
 }
