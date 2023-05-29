@@ -5,6 +5,9 @@ import './index.scss'
 import { pkg } from '@carbon/ibm-products'
 
 pkg.component.Datagrid = true;
+pkg.feature['Datagrid.useFiltering'] = true;
+
+
 ReactDOM.render(
     <React.StrictMode>
         <App />

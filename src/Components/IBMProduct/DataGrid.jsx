@@ -258,7 +258,7 @@ export const DataGrid = () => {
 
 const DatagridActions = (datagridState) => {
   const [data] = useState(staticData);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const openModal = () => {
     document
