@@ -4,8 +4,8 @@ import App from './App'
 import './index.scss'
 import { pkg } from '@carbon/ibm-products'
 
-pkg.component.Datagrid = true;
-pkg.feature['Datagrid.useFiltering'] = true;
+pkg.setAllFeatures(true)
+pkg.setAllComponents(true)
 
 
 ReactDOM.render(

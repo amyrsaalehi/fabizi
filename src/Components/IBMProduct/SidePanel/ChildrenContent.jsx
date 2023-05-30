@@ -73,13 +73,13 @@ const ChildrenContent = () => {
 			</Stack>
 			<Stack>
 				<TextArea
-				labelText='Notes'
-				value={notesValue}
-				invalid={notesValue.length > 100}
-				invalidText="Length Exceeded"
-				helperText={`${notesValue.length} / 100`}
-				maxCount={100}
-				onChange={(event) => setNotesValue(event.target.value)}
+					labelText='Notes'
+					value={notesValue}
+					invalid={notesValue.length > 100}
+					invalidText="Length Exceeded"
+					helperText={`${notesValue.length} / 100`}
+					maxCount={100}
+					onChange={(event) => setNotesValue(event.target.value)}
 				/>
 			</Stack>
 			<Section level={6}>
@@ -90,26 +90,26 @@ const ChildrenContent = () => {
 				<TableContainer>
 					<Table>
 						<TableHead>
-						<TableRow>
-							{headers.map((header) => (
-							<TableHeader key={header.id}>{header.header}</TableHeader>
-							))}
-						</TableRow>
+							<TableRow>
+								{headers.map((header) => (
+									<TableHeader key={header.id}>{header.header}</TableHeader>
+								))}
+							</TableRow>
 						</TableHead>
 						<TableBody>
-						{rows.map((row, index) => (
-							<TableRow key={index}>
-							{row.cells.map((cell, cellIndex) => (
-								<TableCell key={cellIndex}>{cell.value}</TableCell>
+							{rows.map((row, index) => (
+								<TableRow key={index}>
+									{row.cells.map((cell, cellIndex) => (
+										<TableCell key={cellIndex}>{cell.value}</TableCell>
+									))}
+								</TableRow>
 							))}
-							</TableRow>
-						))}
 						</TableBody>
 					</Table>
 				</TableContainer>
 			)}/>
 		</Stack>
-  	)
+	)
 }
 
 export default ChildrenContent

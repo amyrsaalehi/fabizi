@@ -5,7 +5,7 @@ import {
 } from "@carbon/ibm-products";
 // import {ButtonMenu} from '@carbon/ibm-products/es/components/ButtonMenu'
 // import {ButtonMenuItem} from '@carbon/ibm-products/es/components/ButtonMenuItem'
-import { Button, TableToolbarContent, TableToolbarSearch } from "@carbon/react";
+import { Button, TableToolbarContent, TableToolbarSearch, OverflowMenuItem, OverflowMenu } from "@carbon/react";
 import {
   Add,
   ChevronDown,
@@ -221,6 +221,7 @@ const headers = [
   {
     Header: "Role",
     accessor: "role",
+    filter: "radio",
   },
 ];
 
@@ -329,7 +330,7 @@ export const DatagridActions = (datagridState) => {
       <FilterFlyout {...getFilterFlyoutProps()}
         filters={filters}
         variation="flyout"
-        updateMethod="instant"
+        updateMethod="batch"
         primaryActionLabel="Apply"
         secondaryActionLabel="Cancel"
         flyoutIconDescription="Filters"
