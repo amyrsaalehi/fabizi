@@ -1,8 +1,7 @@
-import {ContainedList, ContainedListItem, Link, Button, Grid, Column} from "@carbon/react";
-import { Add } from "@carbon/react/icons";
+import {ContainedList, ContainedListItem} from "@carbon/react";
 import React from "react";
 
-const List = () => {
+const MyContainedList = () => {
     return (
         <ContainedList kind="on-page">
             <ContainedListItem>List item</ContainedListItem>
@@ -12,4 +11,4 @@ const List = () => {
         </ContainedList>
     );
 };
-export default List
+export default MyContainedList

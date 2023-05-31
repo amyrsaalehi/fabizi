@@ -1,7 +1,18 @@
-@use '@carbon/react';
+@use '@carbon/react' with (
+  $font-path: '@ibm/plex'
+);
+@use '@carbon/styles';
 @use '@carbon/ibm-products/css/index';
 @import 'carbon-for-ibm-cloud/src/components/OrderSummaryV2/_index';
 .container {
   max-width: 1200px;
   margin: 2rem auto;
+}
+
+.c4p--datagrid-filter-flyout {
+  max-width: 350px;
+}
+
+.c4p--datagrid-filter-flyout__filters {
+  grid-template-columns: 1fr;
 }
