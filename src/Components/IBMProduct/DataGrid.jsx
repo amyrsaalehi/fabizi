@@ -409,7 +409,7 @@ export const DatagridActions = (datagridState) => {
             </TableToolbarContent>
         ) : !mobileToolbar ? (
             <TableToolbarContent>
-                {renderFilterPanelButton()}
+                {/*{renderFilterPanelButton()}*/}
                 <TableToolbarSearch
                     size="lg"
                     id="columnSearch"

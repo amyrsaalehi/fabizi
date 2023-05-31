@@ -11,6 +11,7 @@
     "@carbon/ibmdotcom-web-components": "^1.31.0",
     "@carbon/react": "^1.29.1",
     "@carbon/web-components": "^1.27.0",
+    "@ibm/plex": "^6.3.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",

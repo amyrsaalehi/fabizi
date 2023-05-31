@@ -1,5 +1,7 @@
+@use '@carbon/react' with (
+  $font-path: '@ibm/plex'
+);
 @use '@carbon/styles';
-@use '@carbon/react';
 @use '@carbon/ibm-products/css/index';
 @import 'carbon-for-ibm-cloud/src/components/OrderSummaryV2/_index';
 .container {
